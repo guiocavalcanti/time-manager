@@ -1,5 +1,6 @@
 class NotificationsController < ApplicationController
-  respond_to :xml, :json
+  wrap_parameters :format => [:json, :xml, :url_encoded_form]
+  respond_to :xml, :json, :url_encoded_form
 
   def create
     @notification = Notification.create(params[:notification])
