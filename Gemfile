@@ -7,7 +7,6 @@ gem 'rails', '3.2.1'
 
 
 gem 'json'
-gem 'rspec-rails'
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'webmock', :group => :test
@@ -27,6 +26,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+
+gem 'rspec-rails', :group => :test
 group :development, :test do
   gem 'sqlite3'
   gem 'ruby-debug19'
