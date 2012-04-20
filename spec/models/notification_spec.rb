@@ -15,32 +15,14 @@ describe Notification do
     end
   end
 
-  context "periodicity_time" do
-    context "daily" do
-      it "should return day as seconds" do
-        subject.periodicity_time.should == 60*60*24
+  context "scope" do
+    it "should return notification sent after a date" do
+      3.times do
+        Notification.create(:url => 'http://foo.bar', :sent_at => DateTime.now)
       end
+      Notification.first.update_attribute(:sent_at, 2.years.ago)
+
+      Notification.sent_since(1.minute.ago).count.should == 2
     end
-
-    context "minutely" do
-      subject do
-        Notification.create(:url => 'http://foo.bar', :periodicity => 'minutely' )
-      end
-
-      it "should return minute as seconds" do
-        subject.periodicity_time.should == 60
-      end
-    end
-
-    context "hourly" do
-      subject do
-        Notification.create(:url => 'http://foo.bar', :periodicity => 'hourly' )
-      end
-
-      it "should return minute as seconds" do
-        subject.periodicity_time.should == 60*60
-      end
-    end
-
   end
 end

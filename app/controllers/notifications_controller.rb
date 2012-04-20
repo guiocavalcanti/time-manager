@@ -6,7 +6,7 @@ class NotificationsController < ApplicationController
     @notification = Notification.create(params[:notification])
 
     if @notification.valid?
-      Delayed::Job.enqueue(DispatchRequestJob.new(@notification.id))
+      Delayed::Job.enqueue(HttpJob::PerformRequest.new(@notification.id))
     end
 
     respond_with @notification

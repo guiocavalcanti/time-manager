@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120327185453) do
+ActiveRecord::Schema.define(:version => 20120419182300) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -36,6 +37,9 @@ ActiveRecord::Schema.define(:version => 20120327185453) do
     t.string   "periodicity",  :default => "daily"
     t.datetime "created_at",                                  :null => false
     t.datetime "updated_at",                                  :null => false
+    t.datetime "sent_at"
   end
+
+  add_index "notifications", ["sent_at"], :name => "index_notifications_on_sent_at"
 
 end

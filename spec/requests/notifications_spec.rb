@@ -2,6 +2,8 @@ require "spec_helper"
 
 describe "Notification" do
   before do
+    WebMock.disable_net_connect!(:allow_localhost => true)
+    stub_request(:any, "http://foo.bar")
     @params = { :url => "http://foo.bar", :method => "get",
                :params => "foo=bar&another=bar" }
     post "/notifications.json", :notification => @params
