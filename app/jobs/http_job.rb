@@ -15,7 +15,7 @@ module HttpJob
       if notification
         raise RateLimitExceeded if exceeded_rate?
 
-        if notification.dispatch.success?
+        if notification.dispatch.status != 500
           notification.touch(:sent_at)
         else
           raise RequestFailed

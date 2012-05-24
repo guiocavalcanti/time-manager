@@ -15,7 +15,10 @@ module Dispatcher
           req.headers['Content-Type'] = content_type || 'application/xml'
         end
 
-        conn.send(method, &block)
+        response = conn.send(method, &block)
+        logger.info(response.body)
+
+        return response
       end
     end
   end
